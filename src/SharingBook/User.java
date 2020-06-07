@@ -6,7 +6,7 @@ public class User {
 	private String UserName;
 	private String Password;
 	private int Count_of_borrow;
-	private int Count_of_taken_book;	
+	private int Count_of_take_book;	
 	
 	public Book[] getWishList() {
 		return wishList;
@@ -24,6 +24,18 @@ public class User {
 		super();
 		this.wishList = wishList;
 		ToBorrowList = toBorrowList;
+	}
+	public String getUserName() {
+		return UserName;
+	}
+	public void setUserName(String userName) {
+		UserName = userName;
+	}
+	public String getPassword() {
+		return Password;
+	}
+	public void setPassword(String password) {
+		Password = password;
 	}
 	
 
