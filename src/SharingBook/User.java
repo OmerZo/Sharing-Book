@@ -3,6 +3,10 @@ package SharingBook;
 public class User {
 	private Book [] wishList;
 	private Book [] ToBorrowList;
+	private String UserName;
+	private String Password;
+	private int Count_of_borrow;
+	private int Count_of_taken_book;	
 	
 	public Book[] getWishList() {
 		return wishList;
