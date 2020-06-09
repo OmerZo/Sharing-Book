@@ -55,9 +55,9 @@ public class Main {
 		
 		
 		User user = new User("Ilan" , "password123", 123456);
-		Login login = new Login();
-		login.createFile();
-		login.usingBufferedWritter(user);
+		Login log = new Login();
+		log.createFile();
+		log.usingBufferedWritter(user);
 		
 	}
 
