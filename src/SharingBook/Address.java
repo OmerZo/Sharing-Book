@@ -4,6 +4,7 @@ public class Address {
 	private String Street;
 	private String City;
 	private int Num_of_bulding;
+
 	public String getStreet() {
 		return Street;
 	}

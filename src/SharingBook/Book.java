@@ -3,11 +3,11 @@ package SharingBook;
 public class Book {
 	private String mName = "";
 	private String mAuthor = "";
-	private String mType = "";
+	public int mType ;
 	
 	
 	
-	public Book(String mName, String mAuthor, String mType) {
+	public Book(String mName, String mAuthor, int mType) {
 		super();
 		this.mName = mName;
 		this.mAuthor = mAuthor;
@@ -31,7 +31,7 @@ public class Book {
 		this.mAuthor = mAuthor;
 	}
 	
-	public String getmType() {
+	public int getmType() {
 		return mType;
 	}
 	
