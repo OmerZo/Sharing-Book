@@ -1,9 +1,16 @@
 package SharingBook;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Login {
 	public void run() {
-	    Scanner scan = new Scanner (new File("the\\dir\\myFile.extension"));//here
+	    Scanner scan = null;
+		try {
+			scan = new Scanner (new File("User.txt"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	    Scanner keyboard = new Scanner (System.in);
 	    String user = scan.nextLine();
 	    String pass = scan.nextLine(); 

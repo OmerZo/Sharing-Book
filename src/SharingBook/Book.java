@@ -35,7 +35,7 @@ public class Book {
 		return mType;
 	}
 	
-	public void setmType(String mType) {
+	public void setmType(int mType) {
 		this.mType = mType;
 	}
 

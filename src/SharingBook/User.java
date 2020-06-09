@@ -5,6 +5,7 @@ public class User {
 	private Book [] ToBorrowList;
 	private String UserName;
 	private String Password;
+	private int id;
 	private int Count_of_borrow;
 	private int Count_of_take_book;	
 	
