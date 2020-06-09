@@ -50,7 +50,7 @@ public class Main {
 		
 		
 		
-		Book b1 = new Book("a", "b", 1);
+		Book b1 = new Book("ab", "b", 1);
 		System.out.println("Book name = " + b1.getmName());
 		
 		
