@@ -52,6 +52,13 @@ public class Main {
 		
 		Book b1 = new Book("a", "b", 1);
 		System.out.println("Book name = " + b1.getmName());
+		
+		
+		User user = new User("Ilan" , "password123", 123456);
+		Login login = new Login();
+		login.createFile();
+		login.usingBufferedWritter(user);
+		
 	}
 
 }
