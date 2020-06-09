@@ -6,11 +6,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		int numin, idnew, index=0, g=0;
-		String Password, UserName, SecondPassword;
+		String Password, UserName, SecondPassword, d;
 		
-		User login;
-		ArrayList<String> wishList;
-		ArrayList<String> ToBorrowList;
+		ArrayList<String> wishList= new ArrayList<>();
+		ArrayList<String> ToBorrowList =  new ArrayList<>();
 		
 		System.out.println("Welcome to Sharing Book");
 		System.out.println("If you want to sign in enter 1 to log in enter 2 ");
@@ -26,11 +25,31 @@ public class Main {
 			}
 			System.out.println("Enter Id");
 			idnew=s.nextInt();
+			System.out.println("Enter your wish list until 1");
+			d=s.next();
+			while(!d.equals("1"))
+			{
+				wishList.add(d);
+				System.out.println("Enter your wish list until 1");
+				d=s.next();
+
+
+			}
+			System.out.println("Enter your to borrow list until 1");
+			d=s.next();
+			while(!d.equals("1"))
+			{
+				ToBorrowList.add(d);
+				System.out.println("Enter your wish list until 1");
+				d=s.next();
+
+			}
+
 			System.out.println("Enter UserName");
 			UserName = s.next();
 			System.out.println("Enter Password");
 			Password = s.next();
-			System.out.println("repeat the password");
+			System.out.println("Repeat the password");
 			SecondPassword=s.next();
 			if (Password.equals(SecondPassword)) {
 				index=1;
@@ -39,25 +58,26 @@ public class Main {
 				g=1;
 			
 			
-			//login.Add_User(wishList, ToBorrowList, UserName, Password, id);
+			//login.Add_User(wishList, ToBorrowList, UserName, Password, idnew);
 
 
+			User NewLogin= new User (UserName,Password,idnew);
+			wishList.add(d);
+			System.out.println(NewLogin.getId());
 			
+            Login log = new Login();
+		    log.createFile();
+		    log.usingBufferedWritter(NewLogin);
+		
+
+		}
+		else
+		{
 			
-
-
 		}
 		
 		
 		
-		Book b1 = new Book("ab", "b", 1);
-		System.out.println("Book name = " + b1.getmName());
-		
-		
-		User user = new User("Ilan" , "password123", 123456);
-		Login log = new Login();
-		log.createFile();
-		log.usingBufferedWritter(user);
 		
 	}
 
