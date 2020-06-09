@@ -1,6 +1,9 @@
 package SharingBook;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
+	
 	private Book [] wishList;
 	private Book [] ToBorrowList;
 	private String UserName;
