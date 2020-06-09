@@ -1,16 +1,30 @@
 package SharingBook;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class Login {
 	public void run() {
-	    Scanner scan = null;
+		
+		User user = new User("Ilan" , "password123", 123);
+		
 		try {
-			scan = new Scanner (new File("User.txt"));
-		} catch (FileNotFoundException e) {
+			String fileName = "Users.txt";
+			ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName));
+			
+			
+			outputStream.writeObject(user);
+		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			
 		}
+		
+		
+/*		
 	    Scanner keyboard = new Scanner (System.in);
 	    String user = scan.nextLine();
 	    String pass = scan.nextLine(); 
@@ -23,7 +37,6 @@ public class Login {
 	    } else {
 	        System.out.print("your error message");
 	    }
+*/
 	}
-	//do file with the details and put the Nfile here
-
 }

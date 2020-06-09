@@ -9,6 +9,15 @@ public class User {
 	private int Count_of_borrow;
 	private int Count_of_take_book;	
 	
+	
+	public User(String userName, String password, int id) {
+		super();
+		UserName = userName;
+		Password = password;
+		this.id = id;
+	}
+	
+	
 	public Book[] getWishList() {
 		return wishList;
 	}
@@ -38,6 +47,7 @@ public class User {
 	public void setPassword(String password) {
 		Password = password;
 	}
+
 	
 
 }
