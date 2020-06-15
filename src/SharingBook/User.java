@@ -1,8 +1,9 @@
 package SharingBook;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class User {
+public class User implements Serializable {
 	
 	private ArrayList<Book> wishList = new ArrayList<Book>();
 	private ArrayList<Book> ToBorrowList = new ArrayList<Book>(); 
@@ -12,7 +13,9 @@ public class User {
 	private int id;
 	
 	private int Count_of_borrow;
-	private int Count_of_take_book;	
+	private int Count_of_take_book;
+	
+	
 	
 
 	public int getCount_of_borrow() {
@@ -53,7 +56,17 @@ public class User {
 		this.id = id;
 	}
 	
-	
+	public User(ArrayList<Book> wishList, ArrayList<Book> toBorrowList, String userName, String password, int id,
+			int count_of_borrow, int count_of_take_book) {
+		super();
+		this.wishList = wishList;
+		ToBorrowList = toBorrowList;
+		UserName = userName;
+		Password = password;
+		this.id = id;
+		Count_of_borrow = count_of_borrow;
+		Count_of_take_book = count_of_take_book;
+	}
 	
 	
 	public void setWishList(ArrayList<Book> wishList) {
@@ -64,11 +77,6 @@ public class User {
 	}
 	public void setToBorrowList(ArrayList<Book> toBorrowList) {
 		ToBorrowList = toBorrowList;
-	}
-	public User(ArrayList<Book> wishList, ArrayList<Book> toBorrowList) {
-		super();
-		this.wishList = wishList;
-		this.ToBorrowList = toBorrowList;
 	}
 	public String getUserName() {
 		return UserName;
@@ -82,7 +90,6 @@ public class User {
 	public void setPassword(String password) {
 		this.Password = password;
 	}
-
 	
 
 }
