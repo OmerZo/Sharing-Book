@@ -12,7 +12,10 @@ public class Book {
 		this.mName = mName;
 		this.mAuthor = mAuthor;
 		this.mType = mType;
+		
+		//need to add to the file
 	}
+	
 	
 	
 	public String getmName() {
