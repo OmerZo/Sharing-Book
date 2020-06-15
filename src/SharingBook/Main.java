@@ -7,18 +7,44 @@ import java.util.ArrayList;
 
 public class Main {
 	
-public static void detail_wishlist(String d,ArrayList<String> wishList)
+public static void add_detail_wishlist(ArrayList<String> wishList)
 {
+	
+	
+	
+	String d;
+	System.out.println("Enter your wish list until 1");
+    Scanner l = new Scanner(System.in);
+	d=l.next();
 	while(!d.equals("1"))
 	{
 		wishList.add(d);
-		System.out.println("Enter your wish list until 1");
-		Scanner l = new Scanner(System.in);
+		System.out.println("Enter your wish book until 1");
 		d=l.next();
-
+		
+	}
+	System.out.println("This is your to wish list");
+	System.out.println(wishList);
+}
+public static void add_detail_to_borrowList(ArrayList<String> ToBorrowList)
+{
+	String d;
+	System.out.println("Enter your to borrow list until 1");
+    Scanner l = new Scanner(System.in);
+	d=l.next();
+	while(!d.equals("1"))
+	{
+		ToBorrowList.add(d);
+		System.out.println("Enter your wish list until 1");
+		d=l.next();
+		
 
 	}
+	
+	System.out.println("This is your to borrow list");
+	System.out.println(ToBorrowList);
 }
+
 
 	public static void main(String[] args) {
 		int numin, idnew, index=0, g=0;
@@ -41,20 +67,8 @@ public static void detail_wishlist(String d,ArrayList<String> wishList)
 			}
 			System.out.println("Enter Id");
 			idnew=s.nextInt();
-			System.out.println("Enter your wish list until 1");
-			d=s.next();
-			detail_wishlist( d, wishList);
-			System.out.println(wishList);
-			System.out.println("Enter your to borrow list until 1");
-			d=s.next();
-			while(!d.equals("1"))
-			{
-				ToBorrowList.add(d);
-				System.out.println("Enter your wish list until 1");
-				d=s.next();
-
-			}
-
+			add_detail_wishlist(wishList);
+			add_detail_to_borrowList(ToBorrowList);
 			System.out.println("Enter UserName");
 			UserName = s.next();
 			System.out.println("Enter Password");
@@ -72,7 +86,6 @@ public static void detail_wishlist(String d,ArrayList<String> wishList)
 
 
 			User NewLogin= new User (UserName,Password,idnew);
-			wishList.add(d);
 			System.out.println(NewLogin.getId());
 			
             Login log = new Login();
