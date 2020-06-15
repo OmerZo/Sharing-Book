@@ -2,7 +2,23 @@ package SharingBook;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+
+
+
 public class Main {
+	
+public static void detail_wishlist(String d,ArrayList<String> wishList)
+{
+	while(!d.equals("1"))
+	{
+		wishList.add(d);
+		System.out.println("Enter your wish list until 1");
+		Scanner l = new Scanner(System.in);
+		d=l.next();
+
+
+	}
+}
 
 	public static void main(String[] args) {
 		int numin, idnew, index=0, g=0;
@@ -27,14 +43,8 @@ public class Main {
 			idnew=s.nextInt();
 			System.out.println("Enter your wish list until 1");
 			d=s.next();
-			while(!d.equals("1"))
-			{
-				wishList.add(d);
-				System.out.println("Enter your wish list until 1");
-				d=s.next();
-
-
-			}
+			detail_wishlist( d, wishList);
+			System.out.println(wishList);
 			System.out.println("Enter your to borrow list until 1");
 			d=s.next();
 			while(!d.equals("1"))
@@ -71,7 +81,7 @@ public class Main {
 		
 
 		}
-		else
+		//else
 		{
 			
 		}
