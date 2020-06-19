@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 public class User implements Serializable {
 
-	private ArrayList<Book> wishList;
-	private ArrayList<Book> toBorrowList;
+
+	private static final long serialVersionUID = 1L;
+	public ArrayList<Book> wishList;
+	public ArrayList<Book> toBorrowList;
 
 	private String UserName;
 	private String Password;
@@ -104,28 +106,27 @@ public class User implements Serializable {
 	public void add_detail_wishlist() {
 		String mName, mAuthor, ifitis;
 		System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
-		Scanner l = new Scanner(System.in);
-		ifitis = l.next();
+		Scanner scanner = new Scanner(System.in);
+		ifitis = scanner.next();
 		while (ifitis.equals("2")) {
 			System.out.println("Enter name of book");
-			mName = l.next();
+			mName = scanner.next();
 			System.out.println("Enter author of the book");
-			mAuthor = l.next();
+			mAuthor = scanner.next();
 			System.out.println("Enter the type of the book");
-			Scanner s = new Scanner(System.in);
-			int mType = s.nextInt();
+			int mType = scanner.nextInt();
 			Book NewBook = new Book(mName, mAuthor, mType);
 			wishList.add(NewBook);
-			System.out.println("The book is insert");
+			System.out.println("The book is insert to wish list");
 			System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
-			ifitis = l.next();
+			ifitis = scanner.next();
 
 		}
 
 	}
 
 	public void add_detail_to_borrowList() {
-		String mName, mAuthor, ifitis, i;
+		String mName, mAuthor, ifitis;
 		System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
 		Scanner scanner = new Scanner(System.in);
 		ifitis = scanner.next();
@@ -135,11 +136,10 @@ public class User implements Serializable {
 			System.out.println("Enter author of the book");
 			mAuthor = scanner.next();
 			System.out.println("Enter the type of the book");
-			Scanner s = new Scanner(System.in);
 			int mType = scanner.nextInt();
 			Book NewBook = new Book(mName, mAuthor, mType);
 			toBorrowList.add(NewBook);
-			System.out.println("The book is insert");
+			System.out.println("The book is insert to borrow list");
 			System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
 			ifitis = scanner.next();
 

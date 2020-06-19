@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public class Main {
 
-//	public static ArrayList<Book> wishList;
-//	public static ArrayList<Book> ToBorrowList;
 	public static Set<User> usersSet;
 
 	public static void add_detail_wishlist(ArrayList<Book> wishList) {
@@ -73,9 +71,6 @@ public class Main {
 	public static void main(String[] args) {
 		int numin, userId, index = 0, g = 0;
 		String Password, UserName, SecondPassword;
-
-		// ArrayList<Book> wishList= new ArrayList<>();
-		// ArrayList<Book> ToBorrowList = new ArrayList<>();
 		loadUsers();
 
 		System.out.println("Welcome to Sharing Book");
@@ -101,23 +96,13 @@ public class Main {
 			} else
 				g = 1;
 
-//			add_detail_wishlist(wishList);
-//			add_detail_to_borrowList(ToBorrowList);
-
 			User newUser = new User(UserName, Password, userId);
+			newUser.add_detail_to_borrowList();
+			newUser.add_detail_wishlist();
 			usersSet.add(newUser);
 			saveUsers();
 			
-//          Login log = new Login();
-//		    log.createFile();
-//		    log.usingBufferedWritter(newUser);
-
 		}
-		// else
-		{
-
-		}
-
 	}
 
 }
