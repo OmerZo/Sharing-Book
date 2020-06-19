@@ -6,18 +6,17 @@ import java.util.Scanner;
 
 public class User implements Serializable {
 
-
 	private static final long serialVersionUID = 1L;
 	public ArrayList<Book> wishList;
 	public ArrayList<Book> toBorrowList;
 
 	private String UserName;
 	private String Password;
-	private int id;
+	private String id;
 	private int Count_of_borrow;
 	private int Count_of_take_book;
 
-	public User(String userName, String password, int id) {
+	public User(String userName, String password, String id) {
 		wishList = new ArrayList<Book>();
 		toBorrowList = new ArrayList<Book>();
 		UserName = userName;
@@ -25,7 +24,7 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public User(ArrayList<Book> wishList, ArrayList<Book> toBorrowList, String userName, String password, int id,
+	public User(ArrayList<Book> wishList, ArrayList<Book> toBorrowList, String userName, String password, String id,
 			int count_of_borrow, int count_of_take_book) {
 		super();
 		this.wishList = wishList;
@@ -37,7 +36,7 @@ public class User implements Serializable {
 		Count_of_take_book = count_of_take_book;
 	}
 
-	public User(ArrayList<Book> wishList, ArrayList<Book> toBorrowList, String userName, String password, int id) {
+	public User(ArrayList<Book> wishList, ArrayList<Book> toBorrowList, String userName, String password, String id) {
 		super();
 		this.wishList = wishList;
 		this.toBorrowList = toBorrowList;
@@ -55,7 +54,7 @@ public class User implements Serializable {
 	}
 
 	public void Add_User(ArrayList<Book> wishList, ArrayList<Book> ToBorrowList, String UserName, String Password,
-			int id) {
+			String id) {
 		this.id = id;
 		this.wishList = wishList;
 		this.toBorrowList = ToBorrowList;
@@ -67,11 +66,11 @@ public class User implements Serializable {
 
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -103,29 +102,24 @@ public class User implements Serializable {
 		this.Password = password;
 	}
 
-	public void add_detail_wishlist() {
-		String mName, mAuthor, ifitis;
-		System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
+	public void addWishBook() {
+		String name, author;
+		int type;
+
+		System.out.println("\n\nPlease enter book details");
 		Scanner scanner = new Scanner(System.in);
-		ifitis = scanner.next();
-		while (ifitis.equals("2")) {
-			System.out.println("Enter name of book");
-			mName = scanner.next();
-			System.out.println("Enter author of the book");
-			mAuthor = scanner.next();
-			System.out.println("Enter the type of the book");
-			int mType = scanner.nextInt();
-			Book NewBook = new Book(mName, mAuthor, mType);
-			wishList.add(NewBook);
-			System.out.println("The book is insert to wish list");
-			System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
-			ifitis = scanner.next();
-
-		}
-
+		System.out.print("Enter name of book: ");
+		name = scanner.next();
+		System.out.print("Enter author of the book: ");
+		author = scanner.next();
+		System.out.print("Enter the type of the book: ");
+		type = scanner.nextInt();
+		Book NewBook = new Book(name, author, type);
+		wishList.add(NewBook);
+		System.out.println("The book is insert to wish list");
 	}
 
-	public void add_detail_to_borrowList() {
+	public void addBorrowBook() {
 		String mName, mAuthor, ifitis;
 		System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
 		Scanner scanner = new Scanner(System.in);
@@ -147,7 +141,6 @@ public class User implements Serializable {
 
 	}
 
-	
 	@Override
 	public String toString() {
 		return "User [wishList=" + wishList + ", toBorrowList=" + toBorrowList + ", UserName=" + UserName
