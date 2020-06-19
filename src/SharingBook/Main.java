@@ -9,11 +9,11 @@ public class Main {
 	
 public static void add_detail_wishlist(ArrayList<Book> wishList)
 {
-	String mName,mAuthor;
-	int mType;
+	String mName,mAuthor, ifitis;
 	System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
     Scanner l = new Scanner(System.in);
-    while (l.next().equals("2"))
+    ifitis = l.next();
+    while (ifitis.equals("2"))
     {
     	System.out.println("Enter name of book");
     	mName = l.next();
@@ -21,27 +21,27 @@ public static void add_detail_wishlist(ArrayList<Book> wishList)
     	mAuthor = l.next();
     	System.out.println("Enter the type of the book");
 		Scanner s = new Scanner(System.in);
-		mType = s.nextInt();	
+		int mType = s.nextInt();	
 		Book NewBook = new Book(mName,mAuthor,mType);
 		wishList.add(NewBook);
     	System.out.println("The book is insert");
     	System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
+    	ifitis = l.next();
 
     }
     
 
-	System.out.println("This is your to wish list");
-	System.out.println(wishList);
+	
 }
 
 
 public static void add_detail_to_borrowList(ArrayList<Book> ToBorrowList)
 {
-	String mName,mAuthor;
-	int mType;
+	String mName,mAuthor, ifitis,i;
 	System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
     Scanner l = new Scanner(System.in);
-    while (l.next().equals("2"))
+    ifitis=l.next();
+    while (ifitis.equals("2"))
     {
     	System.out.println("Enter name of book");
     	mName = l.next();
@@ -49,16 +49,15 @@ public static void add_detail_to_borrowList(ArrayList<Book> ToBorrowList)
     	mAuthor = l.next();
     	System.out.println("Enter the type of the book");
 		Scanner s = new Scanner(System.in);
-		mType = s.nextInt();	
+		int mType = l.nextInt();
 		Book NewBook = new Book(mName,mAuthor,mType);
 		ToBorrowList.add(NewBook);
     	System.out.println("The book is insert");
     	System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
+        ifitis=l.next();
 
     }
 	
-	System.out.println("This is your to borrow list");
-	System.out.println(ToBorrowList);
 }
 
 
@@ -83,8 +82,6 @@ public static void add_detail_to_borrowList(ArrayList<Book> ToBorrowList)
 			}
 			System.out.println("Enter Id");
 			idnew=s.nextInt();
-			add_detail_wishlist(wishList);
-			add_detail_to_borrowList(ToBorrowList);
 			System.out.println("Enter UserName");
 			UserName = s.next();
 			System.out.println("Enter Password");
@@ -97,11 +94,11 @@ public static void add_detail_to_borrowList(ArrayList<Book> ToBorrowList)
 			else
 				g=1;
 			
-			
-			//login.Add_User(wishList, ToBorrowList, UserName, Password, idnew);
+			add_detail_wishlist(wishList);
+			add_detail_to_borrowList(ToBorrowList);
 
 
-			User NewLogin= new User (UserName,Password,idnew);
+			User NewLogin= new User (wishList,ToBorrowList,UserName,Password,idnew);
 			System.out.println(NewLogin.getId());
 			
             Login log = new Login();

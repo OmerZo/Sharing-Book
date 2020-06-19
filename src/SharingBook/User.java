@@ -82,11 +82,31 @@ public class User {
 	public static void add_detail_to_borrowList(User user,Book book_to_boroow)
 	{
 		
-		ArrayList<String> ToBorrowListNew =  new ArrayList<>();
+		user.ToBorrowList.add(book_to_boroow);
 		
 		
 	}
-	
+	public static void add_detail_wish_book(User user,Book wish_book)
+	{
+		
+		user.wishList.add(wish_book);
+		
+		
+	}
+	public static void remove_detail_to_borrowList(User user,Book book_to_boroow)
+	{
+		
+		user.ToBorrowList.remove(book_to_boroow);
+		
+		
+	}
+	public static void remove_detail_to_wishList(User user,Book wishList)
+	{
+		
+		user.ToBorrowList.remove(wishList);
+		
+		
+	}
 	
 	
 	public int getId() {
@@ -97,11 +117,13 @@ public class User {
 	}
 
 	
-	public User(String userName, String password, int id) {
+	public User(ArrayList<Book> wishList,ArrayList<Book> ToBorrowList,String userName, String password, int id) {
 		super();
 		UserName = userName;
 		Password = password;
 		this.id = id;
+		this.ToBorrowList= ToBorrowList;
+		this.wishList=wishList;
 	}
 	
 	
