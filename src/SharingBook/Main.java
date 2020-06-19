@@ -8,52 +8,6 @@ public class Main {
 
 	public static Set<User> usersSet;
 
-	public static void add_detail_wishlist(ArrayList<Book> wishList) {
-		String mName, mAuthor, ifitis;
-		System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
-		Scanner l = new Scanner(System.in);
-		ifitis = l.next();
-		while (ifitis.equals("2")) {
-			System.out.println("Enter name of book");
-			mName = l.next();
-			System.out.println("Enter author of the book");
-			mAuthor = l.next();
-			System.out.println("Enter the type of the book");
-			Scanner s = new Scanner(System.in);
-			int mType = s.nextInt();
-			Book NewBook = new Book(mName, mAuthor, mType);
-			wishList.add(NewBook);
-			System.out.println("The book is insert");
-			System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
-			ifitis = l.next();
-
-		}
-
-	}
-
-	public static void add_detail_to_borrowList(ArrayList<Book> ToBorrowList) {
-		String mName, mAuthor, ifitis, i;
-		System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
-		Scanner l = new Scanner(System.in);
-		ifitis = l.next();
-		while (ifitis.equals("2")) {
-			System.out.println("Enter name of book");
-			mName = l.next();
-			System.out.println("Enter author of the book");
-			mAuthor = l.next();
-			System.out.println("Enter the type of the book");
-			Scanner s = new Scanner(System.in);
-			int mType = l.nextInt();
-			Book NewBook = new Book(mName, mAuthor, mType);
-			ToBorrowList.add(NewBook);
-			System.out.println("The book is insert");
-			System.out.println("Enter your wish 1 to stop enter 2 to enter new book");
-			ifitis = l.next();
-
-		}
-
-	}
-
 	public static void loadUsers() {
 		FileManager<User> fileM = new FileManager<User>("Users.txt");
 		usersSet = fileM.read();
