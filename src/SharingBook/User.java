@@ -101,6 +101,7 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.Password = password;
 	}
+	
 
 	public void addWishBook() {
 		String name, author;
@@ -123,8 +124,9 @@ public class User implements Serializable {
 		String name, author;
 		int type;
 		
-		System.out.println("\n\nPlease enter book details");
 		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("\n\nPlease enter book details");
 		System.out.print("Enter name of book: ");
 		name = scanner.next();
 		System.out.print("Enter author of the book: ");
@@ -134,7 +136,6 @@ public class User implements Serializable {
 		Book NewBook = new Book(name, author, type);
 		wishList.add(NewBook);
 		System.out.println("The book is insert to wish list");
-		System.out.println(wishList.get(0));
 		
 	}
 

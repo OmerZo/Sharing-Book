@@ -9,9 +9,9 @@ public class Main {
 	public static Scanner scanner = new Scanner(System.in);
 	public static void menu(User user)
 	{
-		int option;
+		int option,toDeleteWishBook,toDeleteToBorrowBook;
 		while (true) {
-			System.out.println("\n\nPlease select an option:\n1.Add new book to wish list\n2.Add new book to borrow list\n3.Exit");
+			System.out.println("\n\nPlease select an option:\n1.Add new book to wish list\n2.Add new book to borrow list\n3.Print your wish list\n4.Print your to borrow list\n5.Delete wish book\n6.Delete to borrow book\n7.Exit");
 			option = scanner.nextInt();
 
 			if (option == 1) {
@@ -20,7 +20,47 @@ public class Main {
 			} else if (option == 2) {
 				user.addBorrowBook();
 				saveUsers();
-			} else if (option == 3) {
+			} else if(option == 3) {
+				
+				for(Book book : user.wishList)
+				{
+					System.out.println(book);
+				}
+				
+			} else if(option == 4) {
+				for (Book book : user.toBorrowList)
+				{
+					System.out.println(book);
+				}
+			} else if(option == 5) {
+				System.out.println("This is your wish list books");
+				for(Book book : user.wishList)
+				{
+					System.out.println(book);
+					System.out.println("If you want to delete this book enter 1 else 2\n");
+					toDeleteWishBook = scanner.nextInt();
+					if(toDeleteWishBook == 1) {
+						user.wishList.remove(book);
+					}
+					saveUsers();
+					
+				}
+			} else if(option == 6) {
+				System.out.println("This is your to borrow list books");
+				for(Book book : user.toBorrowList)
+				{
+					System.out.println(book);
+					System.out.println("If you want to delete this book enter 1 else 2\n");
+					toDeleteWishBook = scanner.nextInt();
+					if(toDeleteWishBook == 1) {
+						user.toBorrowList.remove(book);
+					}
+					saveUsers();
+
+				}
+				
+			
+			}else if (option == 7) {
 				break;
 			}
 		}
