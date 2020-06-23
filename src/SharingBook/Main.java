@@ -11,7 +11,7 @@ public class Main {
 	{
 		int option,toDeleteWishBook,toDeleteToBorrowBook;
 		while (true) {
-			System.out.println("\n\nPlease select an option:\n1.Add new book to wish list\n2.Add new book to borrow list\n3.Print your wish list\n4.Print your to borrow list\n5.Delete wish book\n6.Delete to borrow book\n7.Exit");
+			System.out.println("\n\nPlease select an option:\n1.Add new book to wish list\n2.Add new book to borrow list\n3.Print your wish list\n4.Print your to borrow list\n5.Delete wish book\n6.Delete to borrow book\n7.To change Books from your wish list\n8.Exit");
 			option = scanner.nextInt();
 
 			if (option == 1) {
@@ -51,16 +51,34 @@ public class Main {
 				{
 					System.out.println(book);
 					System.out.println("If you want to delete this book enter 1 else 2\n");
-					toDeleteWishBook = scanner.nextInt();
-					if(toDeleteWishBook == 1) {
+					toDeleteToBorrowBook = scanner.nextInt();
+					if(toDeleteToBorrowBook == 1) {
 						user.toBorrowList.remove(book);
+					}
+
+				}
+				saveUsers();
+
+			}else if(option == 7) {
+				for(Book book : user.wishList) {
+					for (User otherUser : usersSet) {
+							for(Book bookOther : otherUser.toBorrowList) {
+								if((bookOther.getmAuthor().equals(book.getmAuthor())) && (bookOther.getmName().equals(book.getmName())) && (bookOther.getmType() == book.getmType()) ) {
+									user.setCount_of_borrow(user.getCount_of_borrow()-1);
+									otherUser.setCount_of_give_book(otherUser.getCount_of_give_book()+1);
+									user.wishList.remove(book);
+									otherUser.toBorrowList.remove(bookOther);
+									System.out.println("work !!");
+
+									}
+							}
+						
 					}
 					saveUsers();
 
 				}
-				
 			
-			}else if (option == 7) {
+			}else if (option == 8) {
 				break;
 			}
 		}

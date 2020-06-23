@@ -14,7 +14,7 @@ public class User implements Serializable {
 	private String Password;
 	private int id;
 	private int Count_of_borrow;
-	private int Count_of_take_book;
+	private int Count_of_give_book;
 
 	public User(String userName, String password, int id) {
 		wishList = new ArrayList<Book>();
@@ -25,7 +25,7 @@ public class User implements Serializable {
 	}
 
 	public User(ArrayList<Book> wishList, ArrayList<Book> toBorrowList, String userName, String password, int id,
-			int count_of_borrow, int count_of_take_book) {
+			int count_of_borrow, int count_of_give_book) {
 		super();
 		this.wishList = wishList;
 		this.toBorrowList = toBorrowList;
@@ -33,7 +33,7 @@ public class User implements Serializable {
 		Password = password;
 		this.id = id;
 		Count_of_borrow = count_of_borrow;
-		Count_of_take_book = count_of_take_book;
+		Count_of_give_book = count_of_give_book;
 	}
 
 	public User(ArrayList<Book> wishList, ArrayList<Book> toBorrowList, String userName, String password, int id) {
@@ -49,8 +49,8 @@ public class User implements Serializable {
 		return Count_of_borrow;
 	}
 
-	public int getCount_of_take_book() {
-		return Count_of_take_book;
+	public int getCount_of_give_book() {
+		return Count_of_give_book;
 	}
 
 	public void Add_User(ArrayList<Book> wishList, ArrayList<Book> ToBorrowList, String UserName, String Password,
@@ -62,7 +62,7 @@ public class User implements Serializable {
 		this.Password = Password;
 		this.id = id;
 		this.Count_of_borrow = 0;
-		this.Count_of_take_book = 0;
+		this.Count_of_give_book = 0;
 
 	}
 
@@ -73,6 +73,14 @@ public class User implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public void setCount_of_borrow(int Count_of_borrow) {
+		this.Count_of_borrow = Count_of_borrow;
+	}
+	public void setCount_of_give_book(int Count_of_give_book) {
+		this.Count_of_give_book = Count_of_give_book;
+	}
+
+
 
 	public void setWishList(ArrayList<Book> wishList) {
 		this.wishList = wishList;
@@ -113,7 +121,7 @@ public class User implements Serializable {
 		name = scanner.next();
 		System.out.print("Enter author of the book: ");
 		author = scanner.next();
-		System.out.print("Enter the type of the book: ");
+		System.out.println("For action book enter 1\nFor drama book press 2\nFor fantasy book press 3\nFor horror book press 4");
 		type = scanner.nextInt();
 		Book NewBook = new Book(name, author, type);
 		wishList.add(NewBook);
@@ -131,18 +139,18 @@ public class User implements Serializable {
 		name = scanner.next();
 		System.out.print("Enter author of the book: ");
 		author = scanner.next();
-		System.out.print("Enter the type of the book: ");
+		System.out.println("For action book enter 1\nFor drama book press 2\nFor fantasy book press 3\nFor horror book press 4");
 		type = scanner.nextInt();
 		Book NewBook = new Book(name, author, type);
-		wishList.add(NewBook);
-		System.out.println("The book is insert to wish list");
-		
+		toBorrowList.add(NewBook);
+		System.out.println("The book is insert to borrow list");
+
 	}
 
 	@Override
 	public String toString() {
 		return "User [wishList=" + wishList + ", toBorrowList=" + toBorrowList + ", UserName=" + UserName
 				+ ", Password=" + Password + ", id=" + id + ", Count_of_borrow=" + Count_of_borrow
-				+ ", Count_of_take_book=" + Count_of_take_book + "]";
+				+ ", Count_of_take_book=" + Count_of_give_book + "]";
 	}
 }
