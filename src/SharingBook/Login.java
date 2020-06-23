@@ -9,6 +9,8 @@ import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class Login {
+	
+	
 	public void createFile() {
 
 		
@@ -47,20 +49,6 @@ public class Login {
 		    }
 		
 		
-/*		
-	    Scanner keyboard = new Scanner (System.in);
-	    String user = scan.nextLine();
-	    String pass = scan.nextLine(); 
-
-	    String inpUser = keyboard.nextLine();
-	    String inpPass = keyboard.nextLine(); 
-
-	    if (inpUser.equals(user) && inpPass.equals(pass)) {
-	        System.out.print("your login message");
-	    } else {
-	        System.out.print("your error message");
-	    }
-*/
 	}
 
 	public void usingBufferedWritter(User user) 

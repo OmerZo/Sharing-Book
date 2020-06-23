@@ -1,84 +1,163 @@
 package SharingBook;
+
 import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.Set;
 
 public class Main {
 
+	public static Set<User> usersSet;
+	public static Scanner scanner = new Scanner(System.in);
+	public static void menu(User user)
+	{
+		int option,toDeleteWishBook,toDeleteToBorrowBook;
+		while (true) {
+			System.out.println("\n\nPlease select an option:\n1.Add new book to wish list\n2.Add new book to borrow list\n3.Print your wish list\n4.Print your to borrow list\n5.Delete wish book\n6.Delete to borrow book\n7.Exit");
+			option = scanner.nextInt();
+
+			if (option == 1) {
+				user.addWishBook();
+				saveUsers();
+			} else if (option == 2) {
+				user.addBorrowBook();
+				saveUsers();
+			} else if(option == 3) {
+				
+				for(Book book : user.wishList)
+				{
+					System.out.println(book);
+				}
+				
+			} else if(option == 4) {
+				for (Book book : user.toBorrowList)
+				{
+					System.out.println(book);
+				}
+			} else if(option == 5) {
+				System.out.println("This is your wish list books");
+				for(Book book : user.wishList)
+				{
+					System.out.println(book);
+					System.out.println("If you want to delete this book enter 1 else 2\n");
+					toDeleteWishBook = scanner.nextInt();
+					if(toDeleteWishBook == 1) {
+						user.wishList.remove(book);
+					}
+					saveUsers();
+					
+				}
+			} else if(option == 6) {
+				System.out.println("This is your to borrow list books");
+				for(Book book : user.toBorrowList)
+				{
+					System.out.println(book);
+					System.out.println("If you want to delete this book enter 1 else 2\n");
+					toDeleteWishBook = scanner.nextInt();
+					if(toDeleteWishBook == 1) {
+						user.toBorrowList.remove(book);
+					}
+					saveUsers();
+
+				}
+				
+			
+			}else if (option == 7) {
+				break;
+			}
+		}
+		
+	}
+
+	public static void loadUsers() {
+		FileManager<User> fileM = new FileManager<User>("Users.txt");
+		usersSet = fileM.read();
+
+		for (User user : usersSet) {
+			System.out.println(user);
+		}
+	}
+
+	public static void saveUsers() {
+		FileManager<User> fileM = new FileManager<User>("Users.txt");
+		fileM.write(usersSet);
+	}
+
+	public static User signIn() {
+		String UserName, Password, SecondPassword;
+		int userId;
+
+		System.out.print("Enter Id: ");
+		userId = scanner.nextInt();
+		System.out.print("Enter UserName: ");
+		UserName = scanner.next();
+
+		do {
+			System.out.print("Enter Password: ");
+			Password = scanner.next();
+			System.out.print("Repeat the password: ");
+			SecondPassword = scanner.next();
+		} while (!Password.equals(SecondPassword));
+
+		return new User(UserName, Password, userId);
+		
+	}
+    public static User logIn() {
+    
+    	
+    	
+		String UserName,Password;
+		int Id;
+		User userCheck = null;
+		System.out.println("Enter UserName: ");
+		UserName = scanner.next();
+		System.out.println("Enter Password: ");
+		Password = scanner.next();
+		System.out.println("Enter Id: ");
+		Id = scanner.nextInt();
+		loadUsers();
+		
+		for (User user : usersSet) {
+			if((user.getId()==Id )&&(user.getUserName().equals(UserName))&&user.getPassword().equals(Password))
+			{
+				System.out.println(user);
+				userCheck = user;
+				break;
+			}
+			
+		}
+		return userCheck;
+		
+	}
+
 	public static void main(String[] args) {
-		int numin, idnew, index=0, g=0;
-		String Password, UserName, SecondPassword, d;
-		
-		ArrayList<String> wishList= new ArrayList<>();
-		ArrayList<String> ToBorrowList =  new ArrayList<>();
-		
-		System.out.println("Welcome to Sharing Book");
-		System.out.println("If you want to sign in enter 1 to log in enter 2 ");
-		Scanner s = new Scanner(System.in);
-		numin = s.nextInt();
-		
-		while ((numin==1)&&(index==0))
-		{
-			if(g==1)
+		int option;
+		User user = null;
+
+		loadUsers();
+
+		System.out.println("Welcome to Sharing Book\n");
+		System.out.println("Please select an option:\n1.Sign in\n2.Log in");
+		option = scanner.nextInt();
+
+		if (option == 1) {
+			user = signIn();
+			usersSet.add(user);
+			saveUsers();
+		} else {
+				
+			user= logIn();
+			while(user ==null)
 			{
-				System.out.println("Wrong password enter details again");
-
+				System.out.println("The details are wrong\n try again\n");
+				user = logIn();
+				
 			}
-			System.out.println("Enter Id");
-			idnew=s.nextInt();
-			System.out.println("Enter your wish list until 1");
-			d=s.next();
-			while(!d.equals("1"))
-			{
-				wishList.add(d);
-				System.out.println("Enter your wish list until 1");
-				d=s.next();
-
-
-			}
-			System.out.println("Enter your to borrow list until 1");
-			d=s.next();
-			while(!d.equals("1"))
-			{
-				ToBorrowList.add(d);
-				System.out.println("Enter your wish list until 1");
-				d=s.next();
-
-			}
-
-			System.out.println("Enter UserName");
-			UserName = s.next();
-			System.out.println("Enter Password");
-			Password = s.next();
-			System.out.println("Repeat the password");
-			SecondPassword=s.next();
-			if (Password.equals(SecondPassword)) {
-				index=1;
-			}
-			else
-				g=1;
-			
-			
-			//login.Add_User(wishList, ToBorrowList, UserName, Password, idnew);
-
-
-			User NewLogin= new User (UserName,Password,idnew);
-			wishList.add(d);
-			System.out.println(NewLogin.getId());
-			
-            Login log = new Login();
-		    log.createFile();
-		    log.usingBufferedWritter(NewLogin);
-		
-
-		}
-		else
-		{
-			
 		}
 		
+
+		menu(user);
+
 		
-		
-		
+		saveUsers();
 	}
 
 }
