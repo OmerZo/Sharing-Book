@@ -60,6 +60,7 @@ public class Main {
 				saveUsers();
 
 			}else if(option == 7) {
+				int x =0;
 				for(Book book : user.wishList) {
 					for (User otherUser : usersSet) {
 							for(Book bookOther : otherUser.toBorrowList) {
@@ -69,8 +70,13 @@ public class Main {
 									user.wishList.remove(book);
 									otherUser.toBorrowList.remove(bookOther);
 									System.out.println("work !!");
+									x = 1;
+									break;
 
 									}
+								if(x == 0) {
+									System.out.println("There is not a match");
+								}
 							}
 						
 					}
