@@ -39,6 +39,31 @@ public class Book implements Serializable {
 		return mType;
 	}
 
+
+	@Override
+	public boolean equals(Object book) {
+		if (this == book)
+			return true;
+		if (book == null)
+			return false;
+		if (getClass() != book.getClass())
+			return false;
+		Book other = (Book) book;
+		if (mAuthor == null) {
+			if (other.mAuthor != null)
+				return false;
+		} else if (!mAuthor.equals(other.mAuthor))
+			return false;
+		if (mName == null) {
+			if (other.mName != null)
+				return false;
+		} else if (!mName.equals(other.mName))
+			return false;
+		if (mType != other.mType)
+			return false;
+		return true;
+	}
+
 	public void setmType(int mType) {
 		this.mType = mType;
 	}
@@ -46,7 +71,7 @@ public class Book implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Book [mName=" + mName + ", mAuthor=" + mAuthor + ", mType=" + mType + "]";
+		return "Book name = " + mName + ", Author = " + mAuthor + ", Type = " + mType;
 	}
 
 }
