@@ -89,36 +89,46 @@ public class Main {
 
 	public static void exchangeBook(User user) {
 		int x = 0;
-		Iterator<Book> currentUserBookItr = user.wishList.iterator();
-		while(currentUserBookItr.hasNext()) {
-//			Book currentUserBook = currentUserBookItr.next();
-			System.out.println("Prim user book = " + currentUserBookItr.next().toString());
-			Iterator<User> otherUserItr = usersSet.iterator();
-			while (otherUserItr.hasNext()) {
-//				User otherUser = otherUserItr.next();
-				System.out.println("Other user = " + otherUserItr.next().toString());
-				Iterator<Book> otherUserBookItr = otherUserItr.next().toBorrowList.iterator();
-				while(otherUserBookItr.hasNext()) {
-//					Book otherUserBook = otherUserBookItr.next();
-					
-					System.out.println("Other user book = " + currentUserBookItr.next().toString());
-					if (currentUserBookItr.next().equals(currentUserBookItr.next())) {
-						user.setCount_of_borrow(user.getCount_of_borrow() - 1);
-						otherUserItr.next().setCount_of_give_book(otherUserItr.next().getCount_of_give_book() + 1);
-						System.out.println("You received " + currentUserBookItr.next().getmName() + " from " + otherUserItr.next().getUserName());
-						user.wishList.remove(currentUserBookItr.next());
-						otherUserItr.next().toBorrowList.remove(currentUserBookItr.next());
-//						x = 1;
-//						break;
-
-					}
-					if (x == 0) {
-						System.out.println("There is not a match");
+		Book bChange = null;
+		User user1 = null;
+		for(Book book : user.wishList) {
+			if(bChange != null) {
+				user.wishList.remove(bChange);
+				user1.toBorrowList.remove(bChange);
+				user1 = null;
+				bChange = null;
+			}
+			for (User otherUser : usersSet) {
+				for(Book bookOther :otherUser.toBorrowList) {
+					if((bookOther.getmAuthor().equals(book.getmAuthor())) && (bookOther.getmName().equals(book.getmName())) && (bookOther.getmType()==book.getmType()) && (x ==0)) {
+						user.setCount_of_borrow(user.getCount_of_borrow()-1);
+						otherUser.setCount_of_give_book(otherUser.getCount_of_give_book()+1);
+						bChange = book;
+						x = 1;
+						user1 = otherUser;
+						System.out.println("The book exchange");
+						System.out.println(book);
 					}
 				}
-
 			}
 		}
+		if(bChange != null) {
+			user.wishList.remove(bChange);
+			user1.toBorrowList.remove(bChange);
+			user1 = null;
+			bChange = null;
+		}
+	}
+	public static int idGood(int id) {
+		int x = 0;
+		for (User otherUser : usersSet) {
+			if ((otherUser.getId() == id) && (x == 0)) {
+				x = 1;
+				System.out.println("This id already is already register");
+			}
+		}
+		return x;
+		
 	}
 	
 	public static void loadUsers() {
@@ -139,6 +149,7 @@ public class Main {
 		String UserName, Password, SecondPassword;
 		int userId;
 
+		do {
 		System.out.print("Enter Id: ");
 		userId = scanner.nextInt();
 		System.out.print("Enter UserName: ");
@@ -152,6 +163,7 @@ public class Main {
 		} while (!Password.equals(SecondPassword));
 
 		return new User(UserName, Password, userId);
+		}while(idGood(userId) == 1);
 
 	}
 
