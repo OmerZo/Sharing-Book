@@ -13,7 +13,7 @@ public class Main {
 	public static void menu(User user) {
 		int option;
 		System.out.println(
-				"\n\nPlease select an option:\n1.Add new book to wish list\n2.Add new book to borrow list\n3.Print your wish list\n4.Print your to borrow list\n5.Delete wish book\n6.Delete to borrow book\n7.To change Books from your wish list\n8.Exit");
+				"\n\nPlease select an option:\n1.Add new book to wish list\n2.Add new book to borrow list\n3.Print your wish list\n4.Print your to borrow list\n5.Delete wish book\n6.Delete to borrow book\n7.To change books from your wish list\n8.To change book from your borrow list\n9.Exit");
 		option = scanner.nextInt();
 		
 		switch (option) {
@@ -40,9 +40,19 @@ public class Main {
 			deleteBook(user, user.toBorrowList);
 			break;
 		case 7:
-			exchangeBook(user);
-			break;
+			if(user.getCount_of_give_book()-user.getCount_of_borrow() >= -2) {
+				exchangeBook(user);
+			    break;
+			}
+			else {
+				System.out.println("You cant to borrow you must give book");
+				break;
+			}
+			
 		case 8:
+			exchangeBookToBorrow(user);
+			break;
+		case 9:
 			System.exit(0);
 			break;
 
@@ -50,28 +60,44 @@ public class Main {
 			break;
 		}
 
-//		if (option == 1) {
-//			user.addWishBook();
-//		} else if (option == 2) {
-//			user.addBorrowBook();
-//		} else if (option == 3) {
-//			for (Book book : user.wishList) {
-//				System.out.println(book);
-//			}
-//		} else if (option == 4) {
-//			for (Book book : user.toBorrowList) {
-//				System.out.println(book);
-//			}
-//		} else if (option == 5) {
-//			deleteBook(user, user.wishList);
-//		} else if (option == 6) {
-//			deleteBook(user, user.toBorrowList);
-//		} else if (option == 7) {
-//			exchangeBook(user);
-//		} else if (option == 8) {
-//			System.exit(0);
-//		}
+
 	}
+	public static void exchangeBookToBorrow(User user) {
+		int x = 0;
+		Book bChange = null;
+		User user1 = null;
+		
+		for(Book book : user.toBorrowList) {
+			if(bChange != null) {
+				user.toBorrowList.remove(bChange);
+				user1.wishList.remove(bChange);
+				user1 = null;
+				bChange = null;
+			}
+			for (User otherUser : usersSet) {
+				for(Book bookOther :otherUser.wishList) {
+					if((bookOther.getmAuthor().equals(book.getmAuthor())) && (bookOther.getmName().equals(book.getmName())) && (bookOther.getmType()==book.getmType()) && (x ==0)) {
+						otherUser.setCount_of_borrow(otherUser.getCount_of_borrow()-1);
+						user.setCount_of_give_book(user.getCount_of_give_book()+1);
+						bChange = book;
+						x = 1;
+						user1 = otherUser;
+						System.out.println("The book exchange");
+						System.out.println(book);
+					}
+				}
+			}
+			saveUsers();
+		}
+		
+		if(bChange != null) {
+			user.toBorrowList.remove(bChange);
+			user1.wishList.remove(bChange);
+			user1 = null;
+			bChange = null;
+		}
+	}
+	
 
 	public static void deleteBook(User user, List<Book> list) {
 		int choice;
@@ -111,6 +137,7 @@ public class Main {
 					}
 				}
 			}
+			saveUsers();
 		}
 		if(bChange != null) {
 			user.wishList.remove(bChange);
@@ -124,7 +151,7 @@ public class Main {
 		for (User otherUser : usersSet) {
 			if ((otherUser.getId() == id) && (x == 0)) {
 				x = 1;
-				System.out.println("This id already is already register");
+				System.out.println("\nThis id already is already register\n");
 			}
 		}
 		return x;
@@ -148,22 +175,19 @@ public class Main {
 	public static User signIn() {
 		String UserName, Password, SecondPassword;
 		int userId;
-
 		do {
-		System.out.print("Enter Id: ");
-		userId = scanner.nextInt();
-		System.out.print("Enter UserName: ");
-		UserName = scanner.next();
-
-		do {
-			System.out.print("Enter Password: ");
-			Password = scanner.next();
-			System.out.print("Repeat the password: ");
-			SecondPassword = scanner.next();
-		} while (!Password.equals(SecondPassword));
-
-		return new User(UserName, Password, userId);
+			System.out.println("Enter Id");
+			userId = scanner.nextInt();
+			System.out.println("Enter userName");
+			UserName = scanner.next();
+			do {
+				System.out.print("Enter Password: ");
+			    Password = scanner.next();
+			    System.out.print("Repeat the password: ");
+			    SecondPassword = scanner.next();
+			}while(!Password.equals(SecondPassword));
 		}while(idGood(userId) == 1);
+	    return new User(UserName, Password, userId);
 
 	}
 
