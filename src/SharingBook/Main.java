@@ -175,6 +175,8 @@ public class Main {
 	public static User signIn() {
 		String UserName, Password, SecondPassword;
 		int userId;
+		boolean check;
+		UserController userc = new UserController();
 		do {
 			System.out.println("Enter Id");
 			userId = scanner.nextInt();
@@ -186,15 +188,20 @@ public class Main {
 			    System.out.print("Repeat the password: ");
 			    SecondPassword = scanner.next();
 			}while(!Password.equals(SecondPassword));
-		}while(idGood(userId) == 1);
+			check = userc.SignIn(userId, UserName, Password);
+			
+		}while((idGood(userId) == 1) && (check == true));
 	    return new User(UserName, Password, userId);
 
 	}
+	
 
 	public static User logIn() {
 
 		String UserName, Password;
 		int Id;
+		UserController userc = new UserController();
+		
 		User userCheck = null;
 		System.out.println("Enter UserName: ");
 		UserName = scanner.next();
@@ -202,14 +209,18 @@ public class Main {
 		Password = scanner.next();
 		System.out.println("Enter Id: ");
 		Id = scanner.nextInt();
+		
 		loadUsers();
+		
 
 		for (User user : usersSet) {
-			if ((user.getId() == Id) && (user.getUserName().equals(UserName)) && user.getPassword().equals(Password)) {
+			if (userc.LogIn(Id, UserName, Password ,user) == true)
+			{
 				System.out.println(user);
 				userCheck = user;
 				break;
-			}
+				
+			}	
 
 		}
 		return userCheck;
