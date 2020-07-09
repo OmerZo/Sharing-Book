@@ -161,10 +161,6 @@ public class Main {
 	public static void loadUsers() {
 		FileManager<User> fileM = new FileManager<User>("Users.txt");
 		usersSet = fileM.read();
-
-		for (User user : usersSet) {
-			System.out.println(user);
-		}
 	}
 
 	public static void saveUsers() {
