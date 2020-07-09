@@ -2,10 +2,12 @@ package SharingBook;
 
 public class UserController implements IUserController{
 	private LoginService service;
+	private BookService serviceBook;
 
 	
 	public UserController() {
 		service = new LoginService();
+		serviceBook = new BookService();
 	}
 	
 	@Override
@@ -26,15 +28,21 @@ public class UserController implements IUserController{
 		
 	}
 	
-
 	@Override
-	public boolean LogIn(int Id , String userName, String Password,User user) {
+	public boolean GoodBook(String mName, String mAuthor, int mType) {
 		
-		if ((user.getId() == Id) && (user.getUserName().equals(userName)) && user.getPassword().equals(Password)) {
+		if((mType < 1) || (mType > 4) || (mName == null) || (mName == "") || (mAuthor == null) || (mAuthor == "")) {
+			throw new IllegalArgumentException("somthing is not valid");
+
+		}
+		
+		String session = serviceBook.Book(mName, mAuthor, mType);
+		if (session != null) {
+			System.out.println(session);
 			return true;
 		}
-		return false;
 		
+		return false;
 	}
 
 

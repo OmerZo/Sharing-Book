@@ -6,8 +6,8 @@ public class Book implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String mName = "";
-	private String mAuthor = "";
+	private String mName ;
+	private String mAuthor ;
 	public int mType;
 
 	public Book(String mName, String mAuthor, int mType) {
@@ -16,7 +16,6 @@ public class Book implements Serializable {
 		this.mAuthor = mAuthor;
 		this.mType = mType;
 
-		// need to add to the file
 	}
 
 	public String getmName() {

@@ -25,6 +25,21 @@ public class UserRepository implements IUserRepository {
 		}
 		return false;
 	}
+	public boolean ValidBook(String mName, String mAuthor, int mType) {
+		int x =1;
+		FileManager<User> fileM = new FileManager<User>("Users.txt");
+		users = fileM.read();
+		for (User checkUser : users) {
+			if ((mName != null) && (mName != "") && (mType >= 1) && (mType <= 4) && (mAuthor != null) && (mAuthor != "")) {
+				x = 0;
+			}
+		}
+		if( x == 0) {
+			return true;
+		}
+		return false;
+		
+	}
 
 	
 	public void add(User user) {
