@@ -13,6 +13,7 @@ public class UserRepository implements IUserRepository {
 		this.users = this.fileManager.read();
 	}
 	
+
 	public boolean ValidUser(int Id , String UserName, String Password) {
 		FileManager<User> fileM = new FileManager<User>("Users.txt");
 		users = fileM.read();
@@ -23,6 +24,33 @@ public class UserRepository implements IUserRepository {
 			}
 		}
 		return false;
+	}
+
+	
+	public void add(User user) {
+		this.fileManager.write(this.users);
+		
+	}
+
+	@Override
+	public void delete(int id) {
+		
+	}
+
+	@Override
+	public User find(int id) {
+		return null;
+	}
+
+	@Override
+	public Set<User> findAll() {
+		return null;
+	}
+
+	@Override
+	public User findByName(String name) {
+		
+		return null;
 	}
 
 }
