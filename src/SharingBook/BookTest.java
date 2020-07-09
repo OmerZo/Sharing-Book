@@ -9,7 +9,6 @@ import SharingBook.BookTest;
 
 
 class BookTest {
-
 	@Test
 	void test() {
 		fail("Not yet implemented");

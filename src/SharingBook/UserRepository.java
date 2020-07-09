@@ -25,31 +25,4 @@ public class UserRepository implements IUserRepository {
 		return false;
 	}
 
-	@Override
-	public void add(User user) {
-		this.fileManager.write(this.users);
-		
-	}
-
-	@Override
-	public void delete(int id) {
-		
-	}
-
-	@Override
-	public User find(int id) {
-		return null;
-	}
-
-	@Override
-	public Set<User> findAll() {
-		return null;
-	}
-
-	@Override
-	public User findByName(String name) {
-		
-		return null;
-	}
-
 }
