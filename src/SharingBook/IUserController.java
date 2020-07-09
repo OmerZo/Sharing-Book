@@ -2,8 +2,8 @@ package SharingBook;
 
 public interface IUserController {
 	
-	public User Login(int id,String userName);
-	public boolean AddUser(User user);
-	public boolean DeleteUser(int id);
+	public boolean LogIn(int id , String userName, String Password,User usercheck);
+	public boolean SignIn(int id, String userName, String Password);
+	
 
 }

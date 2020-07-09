@@ -12,6 +12,18 @@ public class UserRepository implements IUserRepository {
 		this.fileManager = new FileManager<User>(FILENAME);
 		this.users = this.fileManager.read();
 	}
+	
+	public boolean ValidUser(int Id , String UserName, String Password) {
+		FileManager<User> fileM = new FileManager<User>("Users.txt");
+		users = fileM.read();
+		for (User checkUser : users) {
+			if ((checkUser.getId() == Id) && (checkUser.getUserName().equals(UserName)) && (checkUser.getPassword().equals(Password))){
+				return true;
+				
+			}
+		}
+		return false;
+	}
 
 	@Override
 	public void add(User user) {
